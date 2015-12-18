@@ -7,6 +7,7 @@ build_image: drydock/u14nodall:tip
 
 addons:
   firefox: "19.0"
+  selenium: "2.42"
 
 services:
   - selenium
@@ -27,7 +28,7 @@ script:
   - xvfb-run protractor conf.js
 
 after_script:
-  - "/etc/init.d/xvfb stop"
+#  - "/etc/init.d/xvfb stop"
   - istanbul cover conf.js -- -u tdd
   - istanbul report cobertura --dir  shippable/codecoverage/
 
