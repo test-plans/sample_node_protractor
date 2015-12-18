@@ -3,6 +3,7 @@ language: node_js
 node_js:
   - "0.10"
 
+build_image: drydock/u14nodall:tip
 
 addons:
   firefox: "19.0"
@@ -18,12 +19,12 @@ install:
 before_script:
   - mkdir -p shippable/testresults
   - mkdir -p shippable/codecoverage
-  - "export DISPLAY=:99.0"
-  - "/etc/init.d/xvfb start"
+  #- "export DISPLAY=:99.0"
+ # - "/etc/init.d/xvfb start"
 
 script:
   - protractor --version
-  - protractor conf.js
+  - xvfb-run protractor conf.js
 
 after_script:
   - "/etc/init.d/xvfb stop"
